@@ -7,10 +7,22 @@ Author: Fakhar ul islam
 Text Domain: area-custom-post-type
 */
 
+
+
 // Prevent Direct Access
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+
+
+
+// Add Settings Link to Plugin List
+function area_plugin_action_links( $links ) {
+    $settings_link = '<a href="edit.php?post_type=area">Settings</a>';
+    array_unshift( $links, $settings_link ); // Adds the settings link at the beginning
+    return $links;
+}
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'area_plugin_action_links' );
 
 // Register Custom Post Type: Area
 function register_area_post_type() {
